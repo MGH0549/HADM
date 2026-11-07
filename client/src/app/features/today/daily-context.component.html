@@ -1,0 +1,11 @@
+<section class="panel">
+  <div class="section-heading"><div><span class="eyebrow">{{ language.text('DAILY CHECK-IN', 'ملخص يومي') }}</span><h2>{{ language.text('How was your day?', 'كيف كان يومك؟') }}</h2></div></div>
+  <div class="context-grid">
+    <label>{{ language.text('Sleep (hours)', 'النوم (ساعات)') }}<input type="number" min="0" max="24" step="0.5" [(ngModel)]="sleepHours"></label>
+    <label>{{ language.text('Stress (1–5)', 'التوتر (١–٥)') }}<select [(ngModel)]="stressLevel"><option [ngValue]="null">—</option>@for (level of [1,2,3,4,5]; track level) { <option [ngValue]="level">{{ level }}</option> }</select></label>
+    <label class="check-label"><input type="checkbox" [(ngModel)]="exercise">{{ language.text('I exercised', 'مارست الرياضة') }}</label>
+    <label class="check-label"><input type="checkbox" [(ngModel)]="medicationTaken">{{ language.text('Medication taken', 'تناولت الدواء') }}</label>
+  </div>
+  <label>{{ language.text('Note', 'ملاحظة') }}<textarea rows="2" maxlength="500" [(ngModel)]="note"></textarea></label>
+  <button class="primary-button" (click)="save()" [disabled]="busy()">{{ language.text('Save check-in', 'حفظ الملخص') }}</button>
+</section>

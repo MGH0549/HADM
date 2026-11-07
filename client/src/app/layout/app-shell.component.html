@@ -1,0 +1,27 @@
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" routerLink="/today"><span class="brand-mark">ه</span><span>hadm<span class="brand-ar">هضم</span></span></a>
+    <div class="profile-chip"><span class="avatar">{{ auth.email().slice(0, 1).toUpperCase() }}</span><span class="profile-email">{{ auth.email() }}</span></div>
+    <nav aria-label="Main navigation">
+      <a routerLink="/today" routerLinkActive="active"><span>◷</span>{{ language.text('Today', 'اليوم') }}</a>
+      <a routerLink="/insights" routerLinkActive="active"><span>⌁</span>{{ language.text('Patterns', 'الأنماط') }}</a>
+      <a routerLink="/report" routerLinkActive="active"><span>▤</span>{{ language.text('Doctor report', 'تقرير الطبيب') }}</a>
+      <a routerLink="/settings" routerLinkActive="active"><span>⚙</span>{{ language.text('Settings', 'الإعدادات') }}</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="language-toggle"><button [class.active]="!language.isArabic" (click)="language.set('en')">EN</button><button [class.active]="language.isArabic" (click)="language.set('ar')">عربي</button></div>
+      <button class="signout" (click)="signOut()">{{ language.text('Sign out', 'تسجيل الخروج') }} ↗</button>
+    </div>
+  </aside>
+  <main class="workspace">
+    <header class="topbar"><div class="mobile-brand"><span class="brand-mark">ه</span> hadm</div><div class="header-note">{{ language.text('Your private digestive health diary', 'مذكرتك الصحية الخاصة بالهضم') }}</div><div class="date-control"><span>◷</span><input type="date" [ngModel]="diary.selectedDate()" (ngModelChange)="diary.selectedDate.set($event)"></div></header>
+    <div class="content-wrap">
+      <hadm-pwa-status />
+      @if (feedback.error()) { <div class="alert error">{{ feedback.error() }}</div> }
+      @if (feedback.notice()) { <div class="alert success">{{ feedback.notice() }}</div> }
+      @if (feedback.warning()) { <div class="alert warning">{{ feedback.warning() }}</div> }
+      <router-outlet />
+      <footer class="medical-footer"><span>✳</span>{{ language.text('Hadm is a diary, not a diagnosis. Contact a doctor about blood or black stools, severe pain, persistent vomiting, or unexplained weight loss.', 'هضم مذكّرة وليست أداة تشخيص. تواصل مع الطبيب عند ملاحظة دم أو براز أسود أو ألم شديد أو قيء مستمر أو فقدان وزن غير مبرر.') }}</footer>
+    </div>
+  </main>
+</div>

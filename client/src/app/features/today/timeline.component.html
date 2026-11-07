@@ -1,0 +1,8 @@
+<section class="panel">
+  <div class="section-heading"><div><span class="eyebrow">{{ language.text('YOUR DIARY', 'مذكرتك') }}</span><h2>{{ language.text('Timeline', 'السجل اليومي') }}</h2></div><span class="entry-count">{{ events().length }}</span></div>
+  @if (events().length === 0) { <div class="empty-state">{{ language.text('No entries for this day yet. Add a meal, symptom, or bowel movement above.', 'لا توجد إدخالات لهذا اليوم. أضف وجبة أو عرضاً أو حركة أمعاء أعلاه.') }}</div> }
+  <div class="timeline-list">@for (event of events(); track event.id) {
+    <article class="timeline-item" [class.red-flag]="event.redFlag"><span class="timeline-dot"></span><div class="timeline-copy"><div class="timeline-title">{{ eventName(event) }} @if (event.severity) { <span class="severity-pill">{{ event.severity }}/10</span> }</div><div class="muted">{{ eventDetail(event) }}</div></div><time>{{ event.loggedAt | date:'shortTime' }}</time><button class="icon-button" type="button" (click)="remove(event)" [attr.aria-label]="language.text('Delete entry', 'حذف الإدخال')">×</button>
+    </article>
+  }</div>
+</section>

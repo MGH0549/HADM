@@ -1,0 +1,18 @@
+<main class="auth-screen">
+  <section class="auth-card">
+    <a class="brand" routerLink="/today"><span class="brand-mark">ه</span><span>hadm<span class="brand-ar">هضم</span></span></a>
+    <div class="language-toggle"><button [class.active]="!language.isArabic" (click)="language.set('en')">EN</button><button [class.active]="language.isArabic" (click)="language.set('ar')">عربي</button></div>
+    <p class="eyebrow">{{ language.text('A gentler way to notice patterns', 'طريقة أهدأ لملاحظة الأنماط') }}</p>
+    <h1>{{ mode === 'login' ? language.text('Welcome back', 'مرحباً بعودتك') : language.text('Start your diary', 'ابدأ مذكرتك') }}</h1>
+    <p class="muted">{{ language.text('Your symptoms tell a story. Let’s make it easier to see.', 'أعراضك تحكي قصة. لنجعل رؤيتها أسهل.') }}</p>
+    @if (feedback.error()) { <div class="alert error">{{ feedback.error() }}</div> }
+    <form (ngSubmit)="submit()">
+      <label>{{ language.text('Email address', 'البريد الإلكتروني') }}<input type="email" name="email" [(ngModel)]="email" autocomplete="email" required></label>
+      <label>{{ language.text('Password', 'كلمة المرور') }}<input type="password" name="password" [(ngModel)]="password" autocomplete="current-password" minlength="8" required></label>
+      @if (mode === 'register') { <p class="hint">{{ language.text('Use at least 8 characters, with a number, uppercase and lowercase letter.', 'استخدم 8 أحرف على الأقل، مع رقم وحرف كبير وآخر صغير.') }}</p> }
+      <button class="primary full" type="submit" [disabled]="busy()">{{ busy() ? language.text('Please wait…', 'يرجى الانتظار…') : mode === 'login' ? language.text('Sign in', 'تسجيل الدخول') : language.text('Create account', 'إنشاء حساب') }}</button>
+    </form>
+    <button class="text-button" (click)="mode = mode === 'login' ? 'register' : 'login'">{{ mode === 'login' ? language.text('New to Hadm? Create an account', 'جديد في هضم؟ أنشئ حساباً') : language.text('Already have an account? Sign in', 'لديك حساب؟ سجّل الدخول') }}</button>
+    <p class="disclaimer">{{ language.text('Hadm helps you record and notice patterns. It does not diagnose or replace medical advice.', 'يساعدك هضم على تسجيل الأنماط وملاحظتها. لا يقدم تشخيصاً ولا يغني عن المشورة الطبية.') }}</p>
+  </section>
+</main>

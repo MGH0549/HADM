@@ -1,0 +1,10 @@
+<article class="card log-card symptom-card">
+  <div class="card-heading"><span class="icon-bubble rose">♡</span><div><p class="eyebrow">{{ language.text('QUICK LOG', 'تسجيل سريع') }}</p><h2>{{ language.text('Noticed a symptom', 'سجل عرضاً') }}</h2></div></div>
+  <label>{{ language.text('What are you feeling?', 'ما الذي تشعر به؟') }}<select [(ngModel)]="symptomTypeId">@for (type of symptomTypes(); track type.id) { <option [value]="type.id">{{ language.isArabic ? type.nameAr : type.nameEn }}</option> }</select></label>
+  <label>{{ language.text('When', 'الوقت') }}<input type="datetime-local" [(ngModel)]="loggedAt"></label>
+  <div class="range-label"><label for="severity">{{ language.text('How intense?', 'ما شدة العرض؟') }}</label><strong>{{ severity }}<small>/10</small></strong></div>
+  <input id="severity" class="range" type="range" min="0" max="10" [(ngModel)]="severity">
+  <div class="range-scale"><span>{{ language.text('Mild', 'خفيف') }}</span><span>{{ language.text('Strong', 'شديد') }}</span></div>
+  <label>{{ language.text('Anything else? (optional)', 'ملاحظة إضافية (اختياري)') }}<input [(ngModel)]="note" maxlength="500" [placeholder]="language.text('A short note', 'ملاحظة قصيرة')"></label>
+  <button class="primary" type="button" [disabled]="busy()" (click)="save()">{{ language.text('Save symptom', 'حفظ العرض') }} <span>→</span></button>
+</article>

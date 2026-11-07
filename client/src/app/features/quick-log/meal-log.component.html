@@ -1,0 +1,10 @@
+<article class="card log-card meal-card">
+  <div class="card-heading"><span class="icon-bubble peach">✳</span><div><p class="eyebrow">{{ language.text('QUICK LOG', 'تسجيل سريع') }}</p><h2>{{ language.text('Ate something', 'سجل وجبة') }}</h2></div></div>
+  <label>{{ language.text('When', 'الوقت') }}<input type="datetime-local" [(ngModel)]="loggedAt"></label>
+  <label>{{ language.text('Meal', 'نوع الوجبة') }}<select [(ngModel)]="mealType"><option [ngValue]="1">{{ language.text('Breakfast', 'إفطار') }}</option><option [ngValue]="2">{{ language.text('Lunch', 'غداء') }}</option><option [ngValue]="3">{{ language.text('Dinner', 'عشاء') }}</option><option [ngValue]="4">{{ language.text('Snack', 'وجبة خفيفة') }}</option></select></label>
+  <label>{{ language.text('Foods', 'الأطعمة') }}</label>
+  <div class="food-chips">@for (food of foods(); track food.id) { <button type="button" class="chip" [class.chosen]="foodIds.includes(food.id)" (click)="toggleFood(food.id)">{{ foodName(food) }}</button> }</div>
+  <div class="inline-add"><input [(ngModel)]="customFood" [placeholder]="language.text('Add a food', 'أضف طعاماً')" (keydown.enter)="$event.preventDefault(); addFood()"><button class="secondary" type="button" (click)="addFood()">+</button></div>
+  <label>{{ language.text('Note (optional)', 'ملاحظة (اختياري)') }}<input [(ngModel)]="note" [placeholder]="language.text('Anything else?', 'هل هناك شيء آخر؟')"></label>
+  <button class="primary" type="button" [disabled]="busy()" (click)="save()">{{ language.text('Save meal', 'حفظ الوجبة') }} <span>→</span></button>
+</article>

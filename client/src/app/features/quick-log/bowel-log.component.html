@@ -1,0 +1,9 @@
+<article class="card log-card bowel-card">
+  <div class="card-heading"><span class="icon-bubble sage">◉</span><div><p class="eyebrow">{{ language.text('QUICK LOG', 'تسجيل سريع') }}</p><h2>{{ language.text('Bowel movement', 'حركة الأمعاء') }}</h2></div></div>
+  <label>{{ language.text('When', 'الوقت') }}<input type="datetime-local" [(ngModel)]="loggedAt"></label>
+  <label>{{ language.text('Bristol stool type', 'نوع البراز (بريستول)') }}<select [(ngModel)]="bristolType"><option [ngValue]="1">1 · {{ language.text('Separate hard lumps', 'كتل صلبة منفصلة') }}</option><option [ngValue]="2">2 · {{ language.text('Lumpy sausage', 'كتلة متقطعة') }}</option><option [ngValue]="3">3 · {{ language.text('Cracked sausage', 'متشقق') }}</option><option [ngValue]="4">4 · {{ language.text('Smooth and soft', 'ناعم ومتناسق') }}</option><option [ngValue]="5">5 · {{ language.text('Soft blobs', 'قطع طرية') }}</option><option [ngValue]="6">6 · {{ language.text('Mushy', 'مهروس') }}</option><option [ngValue]="7">7 · {{ language.text('Watery', 'مائي') }}</option></select></label>
+  <label>{{ language.text('Urgency', 'الإلحاح') }}<select [(ngModel)]="urgency"><option [ngValue]="0">{{ language.text('None', 'لا يوجد') }}</option><option [ngValue]="1">{{ language.text('Low', 'خفيف') }}</option><option [ngValue]="2">{{ language.text('Moderate', 'متوسط') }}</option><option [ngValue]="3">{{ language.text('High', 'شديد') }}</option></select></label>
+  <label class="check-row"><input type="checkbox" [(ngModel)]="hasBlood">{{ language.text('I noticed blood', 'لاحظت وجود دم') }}</label>
+  <label>{{ language.text('Note (optional)', 'ملاحظة (اختياري)') }}<input [(ngModel)]="note" maxlength="500"></label>
+  <button class="primary" type="button" [disabled]="busy()" (click)="save()">{{ language.text('Save entry', 'حفظ الإدخال') }} <span>→</span></button>
+</article>

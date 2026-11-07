@@ -1,0 +1,56 @@
+@host = http://localhost:5292
+@today = {{$datetime 'YYYY-MM-DD'}}
+@loginEmail = hadm@example.com
+@password = Hadm-demo-2026
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjNTlmODFmYzM0M2U0NTdjYjIxNmViZThhNmY5ZGQ1OCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiYzU5ZjgxZmMzNDNlNDU3Y2IyMTZlYmU4YTZmOWRkNTgiLCJlbWFpbCI6ImhhZG1AZXhhbXBsZS5jb20iLCJwcmVmZXJyZWRfbGFuZ3VhZ2UiOiJlbiIsIm5iZiI6MTc5NDA4NTQzNiwiZXhwIjoxNzk0MTI4NjM2LCJpc3MiOiJIYWRtIiwiYXVkIjoiSGFkbS5DbGllbnQifQ.PGWJx9wsqGE_y1aMySHdkWc-w5ZNWhseIvOBR4ddJwA
+
+### Create a test account once
+POST {{host}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "{{loginEmail}}",
+  "password": "{{password}}",
+  "preferredLanguage": "en"
+}
+
+### @name login
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{loginEmail}}",
+  "password": "{{password}}"
+}
+
+### Current profile
+GET {{host}}/api/me
+Authorization: Bearer {{token}}
+
+### Built-in foods
+GET {{host}}/api/foods
+Authorization: Bearer {{token}}
+
+### Symptom types
+GET {{host}}/api/symptom-types
+Authorization: Bearer {{token}}
+
+### Today's timeline
+GET {{host}}/api/timeline?date={{today}}&offsetMinutes=0
+Authorization: Bearer {{token}}
+
+### Today's daily context
+GET {{host}}/api/daily/{{today}}
+Authorization: Bearer {{token}}
+
+### Severity trend
+GET {{host}}/api/insights/severity-trend?days=30&offsetMinutes=0
+Authorization: Bearer {{token}}
+
+### Food correlation
+GET {{host}}/api/insights/food-correlation?windowHours=6&offsetMinutes=0
+Authorization: Bearer {{token}}
+
+### Seven-day English report
+GET {{host}}/api/reports/pdf?from={{today}}&to={{today}}&lang=en&offsetMinutes=0
+Authorization: Bearer {{token}}

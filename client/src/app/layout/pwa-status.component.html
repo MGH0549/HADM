@@ -1,0 +1,9 @@
+@if (!pwa.isOnline()) {
+  <div class="pwa-offline" role="status">{{ language.text('You’re offline. Reconnect to load diary data; entries are not stored offline.', 'أنت غير متصل. أعد الاتصال لتحميل بيانات المذكرة؛ لا تُخزّن الإدخالات دون اتصال.') }}</div>
+}
+@if (pwa.canInstall()) {
+  <div class="pwa-install"><span>{{ language.text('Add Hadm to your home screen for quick access.', 'أضف هضم إلى شاشتك الرئيسية للوصول السريع.') }}</span><button type="button" (click)="pwa.install()">{{ language.text('Install app', 'تثبيت التطبيق') }}</button></div>
+}
+@if (pwa.needsManualInstall() && !pwa.isInstalled()) {
+  <div class="pwa-install-help">{{ language.text('To install on iPhone or iPad, tap Share in Safari, then choose “Add to Home Screen”.', 'للتثبيت على iPhone أو iPad، اضغط مشاركة في Safari ثم اختر «إضافة إلى الشاشة الرئيسية».') }}</div>
+}

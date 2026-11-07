@@ -1,0 +1,14 @@
+D:\projects\HADM\src\Hadm.Domain\bin\Debug\net10.0\Hadm.Domain.deps.json
+D:\projects\HADM\src\Hadm.Domain\bin\Debug\net10.0\Hadm.Domain.dll
+D:\projects\HADM\src\Hadm.Domain\bin\Debug\net10.0\Hadm.Domain.pdb
+D:\projects\HADM\src\Hadm.Domain\obj\Debug\net10.0\Hadm.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\projects\HADM\src\Hadm.Domain\obj\Debug\net10.0\Hadm.Domain.AssemblyInfoInputs.cache
+D:\projects\HADM\src\Hadm.Domain\obj\Debug\net10.0\Hadm.Domain.AssemblyInfo.cs
+D:\projects\HADM\src\Hadm.Domain\obj\Debug\net10.0\Hadm.Domain.csproj.CoreCompileInputs.cache
+D:\projects\HADM\src\Hadm.Domain\obj\Debug\net10.0\Hadm.Domain.dll
+D:\projects\HADM\src\Hadm.Domain\obj\Debug\net10.0\refint\Hadm.Domain.dll
+D:\projects\HADM\src\Hadm.Domain\obj\Debug\net10.0\Hadm.Domain.pdb
+D:\projects\HADM\src\Hadm.Domain\obj\Debug\net10.0\ref\Hadm.Domain.dll
+D:\projects\HADM\buildcheck\solution-bin\Debug\net10.0\Hadm.Domain.deps.json
+D:\projects\HADM\buildcheck\solution-bin\Debug\net10.0\Hadm.Domain.dll
+D:\projects\HADM\buildcheck\solution-bin\Debug\net10.0\Hadm.Domain.pdb

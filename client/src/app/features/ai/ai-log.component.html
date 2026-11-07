@@ -1,0 +1,28 @@
+<section class="panel ai-log-panel">
+  <div class="section-heading"><div><span class="eyebrow">{{ language.text('AI ASSISTED', 'مساعدة ذكية') }}</span><h2>{{ language.text('Describe what happened', 'صف ما حدث') }}</h2></div><span class="ai-spark">✳</span></div>
+  <p class="muted">{{ language.text('Write naturally in English or Arabic. AI will prepare editable drafts; nothing is saved until you confirm.', 'اكتب بطريقتك بالعربية أو الإنجليزية. سيجهّز الذكاء الاصطناعي مسودات قابلة للتعديل ولا يُحفظ شيء حتى تؤكد.') }}</p>
+  <textarea rows="3" maxlength="2000" [(ngModel)]="text" [placeholder]="language.text('Two coffees and a cheese sandwich at 9, bloated by 11…', 'قهوة وجبنة الساعة ٩، وشعرت بالانتفاخ الساعة ١١…')"></textarea>
+  @if (preferences(); as prefs) { @if (!prefs.enabled) { <p class="ai-clarification">{{ language.text('Enable AI in Settings and consent to data processing before using natural-language logging.', 'فعّل الذكاء الاصطناعي من الإعدادات ووافق على معالجة البيانات لاستخدام التسجيل باللغة الطبيعية.') }}</p> } @else if (!prefs.configured) { <p class="ai-clarification">{{ language.text('The server needs an AI provider key before this feature can be used.', 'يحتاج الخادم إلى مفتاح مزود الذكاء الاصطناعي قبل استخدام هذه الميزة.') }}</p> } }
+  <button class="primary-button" type="button" (click)="parse()" [disabled]="parsing() || !text.trim() || !preferences()?.enabled || !preferences()?.configured">{{ parsing() ? language.text('Preparing drafts…', 'جارٍ تجهيز المسودات…') : language.text('Prepare entries', 'تجهيز الإدخالات') }}</button>
+  @if (clarification) { <p class="ai-clarification">{{ clarification }}</p> }
+  @if (riskNotice) { <div class="alert warning">{{ riskNotice }}</div> }
+  @if (drafts().length) {
+    <div class="ai-drafts"><h3>{{ language.text('Review each draft before saving', 'راجع كل مسودة قبل الحفظ') }}</h3>
+      @for (entry of drafts(); track $index; let i = $index) {
+        <article class="ai-draft"><label class="ai-include"><input type="checkbox" [ngModel]="entry.include" (ngModelChange)="update(i, {include:$event})">{{ entry.kind === 'meal' ? language.text('Meal', 'وجبة') : language.text('Symptom', 'عرض') }}</label>
+          <label>{{ language.text('Time', 'الوقت') }}<input type="datetime-local" [ngModel]="entry.loggedAt" (ngModelChange)="update(i, {loggedAt:$event})"></label>
+          @if (entry.kind === 'meal') {
+            <label>{{ language.text('Meal type', 'نوع الوجبة') }}<select [ngModel]="entry.mealType" (ngModelChange)="update(i, {mealType:$event})"><option [ngValue]="1">{{ language.text('Breakfast', 'إفطار') }}</option><option [ngValue]="2">{{ language.text('Lunch', 'غداء') }}</option><option [ngValue]="3">{{ language.text('Dinner', 'عشاء') }}</option><option [ngValue]="4">{{ language.text('Snack', 'وجبة خفيفة') }}</option></select></label>
+            <div class="ai-food-list">@for (food of foods(); track food.id) { <label class="check-label"><input type="checkbox" [checked]="entry.foodIds.includes(food.id)" (change)="toggleFood(i, food.id)">{{ foodName(food) }}</label> }</div>
+          } @else {
+            <label>{{ language.text('Symptom', 'العرض') }}<select [ngModel]="entry.symptomTypeId" (ngModelChange)="update(i, {symptomTypeId:$event})">@for (type of symptoms(); track type.id) { <option [value]="type.id">{{ symptomName(type) }}</option> }</select></label>
+            <label>{{ language.text('Severity (0–10)', 'الشدة (٠–١٠)') }}<input type="number" min="0" max="10" [ngModel]="entry.severity" (ngModelChange)="update(i, {severity:$event})"></label>
+          }
+          <label>{{ language.text('Note', 'ملاحظة') }}<input maxlength="500" [ngModel]="entry.note" (ngModelChange)="update(i, {note:$event})"></label>
+        </article>
+      }
+      <button class="primary-button" type="button" [disabled]="busy()" (click)="saveSelected()">{{ busy() ? language.text('Saving…', 'جارٍ الحفظ…') : language.text('Confirm and save selected entries', 'تأكيد وحفظ الإدخالات المحددة') }}</button>
+    </div>
+  }
+  <small class="ai-disclaimer">{{ language.text('AI can misunderstand. Review drafts carefully. It does not diagnose or provide treatment advice.', 'قد يخطئ الذكاء الاصطناعي في الفهم. راجع المسودات جيداً. لا يقدم تشخيصاً أو نصيحة علاجية.') }}</small>
+</section>

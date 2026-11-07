@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Hadm.Application/Hadm.Application.csproj" />
+    <Project Path="src/Hadm.Domain/Hadm.Domain.csproj" />
+    <Project Path="src/Hadm.Infrastructure/Hadm.Infrastructure.csproj" />
+    <Project Path="src/Hadm.WebApi/Hadm.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Hadm.Application.Tests/Hadm.Application.Tests.csproj" />
+    <Project Path="tests/Hadm.Domain.Tests/Hadm.Domain.Tests.csproj" />
+  </Folder>
+</Solution>

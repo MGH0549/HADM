@@ -1,8 +1,3 @@
-@host = http://localhost:5292
-@today = {{$datetime 'YYYY-MM-DD'}}
-@loginEmail = hadm@example.com
-@password = Hadm-demo-2026
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjNTlmODFmYzM0M2U0NTdjYjIxNmViZThhNmY5ZGQ1OCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiYzU5ZjgxZmMzNDNlNDU3Y2IyMTZlYmU4YTZmOWRkNTgiLCJlbWFpbCI6ImhhZG1AZXhhbXBsZS5jb20iLCJwcmVmZXJyZWRfbGFuZ3VhZ2UiOiJlbiIsIm5iZiI6MTc5NDA4NTQzNiwiZXhwIjoxNzk0MTI4NjM2LCJpc3MiOiJIYWRtIiwiYXVkIjoiSGFkbS5DbGllbnQifQ.PGWJx9wsqGE_y1aMySHdkWc-w5ZNWhseIvOBR4ddJwA
 
 ### Create a test account once
 POST {{host}}/api/auth/register
